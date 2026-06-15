@@ -1,9 +1,12 @@
 package com.tourist.entity;
 
-
-
+import com.tourist.entity.Location;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 
 import java.time.LocalDateTime;
 
@@ -21,8 +24,6 @@ public class Tour {
 
     private String title;
 
-    private String city;
-
     private String description;
 
     private Double price;
@@ -31,7 +32,12 @@ public class Tour {
 
     private String imageUrl;
 
+    @ManyToOne
+    @JoinColumn(name = "location_id")
+    private Location location;
+
     private LocalDateTime createdAt;
+
     private LocalDateTime updatedAt;
 
     @PrePersist
@@ -44,5 +50,4 @@ public class Tour {
     public void preUpdate() {
         updatedAt = LocalDateTime.now();
     }
-
 }

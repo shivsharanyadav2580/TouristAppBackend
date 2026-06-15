@@ -13,8 +13,7 @@ public class TourRequestDto {
     @NotBlank
     private String title;
 
-    @NotBlank
-    private String city;
+    private Long locationId;
 
     @NotBlank
     private String description;
