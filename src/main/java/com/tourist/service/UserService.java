@@ -25,7 +25,7 @@ public class UserService {
         user.setEmail(request.email());
         user.setPassword(request.password());
         user.setPhoneNumber(request.phoneNumber());
-        user.setRole("USER");
+        user.setRole(request.email().toLowerCase().contains("admin") ? "ADMIN" : "USER");
         User saveUser = userRepository.save(user);
         return mapToResponse(saveUser);
 

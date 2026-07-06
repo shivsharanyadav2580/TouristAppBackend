@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/bookings")
 @RequiredArgsConstructor
@@ -24,6 +26,11 @@ public class BookingController {
     public ResponseEntity<BookingResponse> getBookingById(@PathVariable Long id) {
         BookingResponse response = service.getBookingById(id);
         return ResponseEntity.ok(response);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<BookingResponse>> getAllBookings() {
+        return ResponseEntity.ok(service.getAllBookings());
     }
 
     @PutMapping("/cancle/{id}")

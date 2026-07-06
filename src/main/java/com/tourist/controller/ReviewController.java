@@ -28,6 +28,11 @@ public class ReviewController {
                 reviewService.addReview(dto));
     }
 
+    @GetMapping("/tour/{tourId}")
+    public ResponseEntity<List<Review>> getReviewsByTourId(@PathVariable Long tourId) {
+        return ResponseEntity.ok(reviewService.getReviewsByTourId(tourId));
+    }
+
 
 
 

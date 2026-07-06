@@ -30,6 +30,7 @@ public class Tour {
 
     private Integer duration;
 
+    @Column(length = 1000)
     private String imageUrl;
 
     @ManyToOne

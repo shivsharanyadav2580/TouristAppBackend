@@ -10,6 +10,8 @@ import com.tourist.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ReviewService {
     public ReviewService(UserRepository userRepository, TourRepository tourRepository , ReviewRepository reviewRepository) {
@@ -37,5 +39,9 @@ public class ReviewService {
 
     return reviewRepository.save(review);
 
+    }
+
+    public List<Review> getReviewsByTourId(Long tourId) {
+        return reviewRepository.findByTourId(tourId);
     }
 }
