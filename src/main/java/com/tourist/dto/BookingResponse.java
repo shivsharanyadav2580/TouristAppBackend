@@ -16,6 +16,6 @@ public record BookingResponse(
 
         Double totalAmount,
 
-        String bookingStatus
+        com.tourist.entity.BookingStatus bookingStatus
 ) {
 }

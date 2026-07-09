@@ -4,6 +4,7 @@ import com.tourist.dto.BookingRequest;
 import com.tourist.dto.BookingResponse;
 import com.tourist.dto.UserResponse;
 import com.tourist.entity.Booking;
+import com.tourist.entity.BookingStatus;
 import com.tourist.entity.Tour;
 import com.tourist.entity.User;
 import com.tourist.repository.BookingRepository;
@@ -39,7 +40,7 @@ public class BookingService {
         booking.setTravelDate(request.travelDate());
         booking.setNumberOfPersons(request.numberOfPersons());
         booking.setTotalAmount(totalAmount);
-        booking.setBookingStatus("CONFIRMED");
+        booking.setStatus(BookingStatus.CONFIRMED);
 
         Booking savedBooking = bookingRepository.save(booking);
         return mapToResponse(savedBooking);
@@ -58,9 +59,10 @@ public class BookingService {
         Booking booking = bookingRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Booking not found"));
         return mapToResponse(booking);
     }
+
     public String cancelBooking(Long id) {
         Booking booking = bookingRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Booking not found"));
-        booking.setBookingStatus("CANCELLED");
+        booking.setStatus(BookingStatus.CANCELLED);
         bookingRepository.save(booking);
         return "Booking cancelled successfully";
     }
@@ -74,7 +76,7 @@ public class BookingService {
                 booking.getTravelDate(),
                 booking.getNumberOfPersons(),
                 booking.getTotalAmount(),
-                booking.getBookingStatus()
+                booking.getStatus()
         );
 
     }

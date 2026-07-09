@@ -26,7 +26,9 @@ public class Booking {
 
     private Double totalAmount;
 
-    private String bookingStatus;
+
+    @Enumerated(EnumType.STRING)
+    private BookingStatus status;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
